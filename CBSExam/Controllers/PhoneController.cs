@@ -24,13 +24,25 @@ namespace CBSExam.Controllers
             _configuration = configuration;
         }
 
-        public IActionResult Index(string twilioResponse)
+        public IActionResult Index(string twilioResponse, string sortMessageID)
         {
             IEnumerable<Message> messages = null;
 
             try
             {
+                ViewData["messagenum"] = string.IsNullOrEmpty(sortMessageID) ? "messageID" : "";
                 messages = _messageRepository.ListPrevMessages();
+
+                switch (sortMessageID)
+                {
+                    case "messageID":
+                        messages = messages.OrderBy(x => x.messageID);
+                        break;
+                    default:
+                        messages = messages.OrderByDescending(x => x.messageID);
+                        break;
+                }
+
                 if (!String.IsNullOrEmpty(twilioResponse))
                 {
                     twilioResponse = $"Twilio response: {twilioResponse}";
@@ -39,6 +51,7 @@ namespace CBSExam.Controllers
             catch (Exception ex)
             {
                 ModelState.AddModelError("", ex.Message.ToString());
+                return View(new MessageViewModel { messages = messages, twilioResponse = twilioResponse });
             }
 
             return View(new MessageViewModel { messages = messages, twilioResponse = twilioResponse });
@@ -86,11 +99,10 @@ namespace CBSExam.Controllers
             }
             catch (Exception ex)
             {
+                messageViewModel.messages = new List<Message>();
                 ModelState.AddModelError("", ex.Message.ToString());
             }
-
-            return RedirectToAction("Index");
-
+            return View("Index", messageViewModel);
         }
 
     }

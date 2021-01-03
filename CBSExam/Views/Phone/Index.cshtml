@@ -36,7 +36,9 @@
 <h4>See previous sent messages</h4>
 <table class="table table-condensed table-bordered">
     <tr>
-        <th>Message ID</th>
+        <th>
+            <a class="glyphicon glyphicon-triangle-bottom" asp-action="Index" asp-route-sortMessageID="@ViewData["messagenum"]"><i class="fa fa-fw fa-sort"></i>Message ID</a>        
+        </th>
         <th>Message</th>
         <th>Phone Number</th>
         <th>Created Date</th>
