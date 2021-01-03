@@ -1,9 +1,6 @@
 ﻿using CBSExam.Models;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CBSExam.ViewModel
 {
@@ -21,6 +18,6 @@ namespace CBSExam.ViewModel
 
         public string twilioResponse { get; set; }
 
-        public IEnumerable<Message> messages{ get; set; }
+        public IEnumerable<Message> messages { get; set; }
     }
 }

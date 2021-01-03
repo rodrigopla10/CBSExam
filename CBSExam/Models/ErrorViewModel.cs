@@ -1,5 +1,3 @@
-using System;
-
 namespace CBSExam.Models
 {
     public class ErrorViewModel

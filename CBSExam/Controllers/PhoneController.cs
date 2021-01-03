@@ -1,14 +1,14 @@
-﻿using CBSExam.Models;
+﻿using CBSExam.Helper;
+using CBSExam.Models;
 using CBSExam.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Serilog;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
-using CBSExam.Helper;
 
 namespace CBSExam.Controllers
 {
@@ -50,7 +50,8 @@ namespace CBSExam.Controllers
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("", ex.Message.ToString());
+                Log.Error(ex, Utilities.ErrorCodes.LoadingPageError.ToString());
+                ModelState.AddModelError("Error: ", Utilities.ErrorCodes.LoadingPageError.ToString());
                 return View(new MessageViewModel { messages = messages, twilioResponse = twilioResponse });
             }
 
@@ -89,6 +90,8 @@ namespace CBSExam.Controllers
                     sentMessage.messageID = _messageRepository.InsertMessage(message);
                     _messageRepository.InsertSentMessage(sentMessage);
 
+                    Log.Information($"Message submitted succesfully and got Twilio response:{statusResponse}");
+
                     return RedirectToAction("Index", new { twilioResponse = statusResponse });
                 }
                 else
@@ -99,8 +102,9 @@ namespace CBSExam.Controllers
             }
             catch (Exception ex)
             {
+                Log.Error(ex, Utilities.ErrorCodes.SubmitMessageError.ToString());
                 messageViewModel.messages = new List<Message>();
-                ModelState.AddModelError("", ex.Message.ToString());
+                ModelState.AddModelError("Error: ", Utilities.ErrorCodes.SubmitMessageError.ToString());
             }
             return View("Index", messageViewModel);
         }

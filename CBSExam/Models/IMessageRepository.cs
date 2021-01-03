@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace CBSExam.Models
 {
-   public interface IMessageRepository
+    public interface IMessageRepository
     {
 
         IEnumerable<Message> ListPrevMessages();
