@@ -14,14 +14,28 @@ namespace CBSExam.Models
             _appDbContext = dbContext;
         }
 
-        public void CreateMessage(Message message)
+        public int InsertMessage(Message message)
         {
             try
             {
-                message.createdDate = DateTime.Now;
-
                 _appDbContext.Message.Add(message);
                 _appDbContext.SaveChanges();
+
+                return message.messageID;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+
+        public void InsertSentMessage(SentMessage sentMessage)
+        {
+            try
+            {
+                _appDbContext.SentMessage.Add(sentMessage);
+                _appDbContext.SaveChanges();
+
             }
             catch (Exception ex)
             {

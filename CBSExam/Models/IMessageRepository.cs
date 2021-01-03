@@ -9,7 +9,9 @@ namespace CBSExam.Models
     {
 
         IEnumerable<Message> ListPrevMessages();
-        void CreateMessage(Message message);
+        int InsertMessage(Message message);
+
+        void InsertSentMessage(SentMessage sentMessage);
 
 
     }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "APp6daoHRnPvjuS5SHLxqUeGQrAXcgV6t1kqkRVMnNCt4hRmrKVM1zxKTR4vuZwzP0YbrkDcibOgXMZ/egwl6w==",
+  "dgSpecHash": "GmofsZ4BpUHyV4+hbXPVJKuLN0M9yPqdjp9+FGinFIlQuLTLyi4joe+XW0mDp6TdS65t1Q2uUC6wPPp2tNZQUQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\rodri\\source\\repos\\CBSExam\\CBSExam\\CBSExam.csproj",
   "expectedPackageFiles": [
@@ -160,7 +160,8 @@
     "C:\\Users\\rodri\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\rodri\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\rodri\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\rodri\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Users\\rodri\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\rodri\\.nuget\\packages\\twilio\\5.52.1\\twilio.5.52.1.nupkg.sha512"
   ],
   "logs": []
 }
