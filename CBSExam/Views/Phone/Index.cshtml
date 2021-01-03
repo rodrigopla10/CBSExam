@@ -1,0 +1,69 @@
+﻿@model CBSExam.ViewModel.MessageViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h4>Send your message and specify a phone number</h4>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SubmitMessage" method="post" class="form-horizontal" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="to" class="control-label"></label>
+                <input asp-for="to" class="form-control" />
+                <span asp-validation-for="to" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="message" class="control-label"></label>
+                <textarea asp-for="message" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="message" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit Message" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<br/>
+<br/>
+<h4>See previous sent messages</h4>
+<table class="table table-condensed table-bordered">
+    <tr>
+        <th>Message ID</th>
+        <th>Message</th>
+        <th>Phone Number</th>
+        <th>Created Date</th>
+    </tr>
+
+    @if (!Model.messages.Any())
+    {
+        <tr><td colspan="3" class="text-center">There are no previous messages:()</td></tr>
+
+    }
+    else
+    {
+
+        @foreach (var message in Model.messages)
+        {
+            <tr>
+
+                <td>@message.messageID</td>
+                <td>@message.message</td>
+                <td>@message.to</td>
+                <td>@message.createdDate</td>
+
+            </tr>
+        }
+    }
+</table>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
